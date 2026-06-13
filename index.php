@@ -47,7 +47,7 @@ $results = getNames($pdo, $query);
 
           <?php foreach ($results as $result): ?>
             <a
-              href="#"
+              href="name.php?name=<?php echo $result['name'] ?>"
               class="block p-3 bg-white border rounded-lg shadow-sm hover:shadow-md">
               <?php echo e($result['name']); ?>
             </a>
