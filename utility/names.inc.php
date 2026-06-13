@@ -1,4 +1,5 @@
 <?php 
+declare(strict_types=1);
 
 function getNames(PDO $pdo, string $query = ''): array
 {
