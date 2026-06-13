@@ -7,15 +7,36 @@ require __DIR__.'/utility/namedetails.inc.php';
 $queryName = $_GET['name'];
 
 $result = getNameDetails($pdo,$queryName);
-// var_dump($result);
 
 ?>
 
 
 
 <div class="max-w-6xl mx-auto px-4 py-8">
+    <div class="mb-4">
+        <a href="index.php"><i class="fa-solid fa-arrow-left-long"></i> Back</a>
+    </div>
+    
 
-    <a href="index.php" class="mb-4"><i class="fa-solid fa-arrow-left-long"></i> Back</a>
+    <?php if(empty($result)): ?>
+
+    <div class="bg-white rounded-2xl shadow-lg p-10 text-center mt-8">
+        <h2 class="text-2xl font-bold text-gray-700">
+            No data found
+        </h2>
+
+        <p class="text-gray-500 mt-2">
+            No statistics are available for
+            "<?php echo htmlspecialchars($queryName); ?>"
+        </p>
+
+        <a href="index.php"
+           class="inline-block mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            Back to Search
+        </a>
+    </div>
+
+<?php else: ?>
 
     <!-- Header Card -->
     <div class="bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-2xl shadow-lg p-8 mb-8">
@@ -51,12 +72,17 @@ $result = getNameDetails($pdo,$queryName);
         </div>
     </div>
 
+    <!-- Chart -->
     <div class="bg-white rounded-2xl shadow-xl p-6 mb-6">
     <h2 class="text-xl font-semibold mb-4 text-gray-800">
         Popularity Trend
     </h2>
 
     <canvas id="nameChart"></canvas>
+
+
+
+
 </div>
 
     <!-- Table Card -->
@@ -114,7 +140,11 @@ $result = getNameDetails($pdo,$queryName);
         </div>
     </div>
 
+
+
 </div>
+
+<?php endif; ?>
 
 <?php
 $years = [];
