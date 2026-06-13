@@ -4,7 +4,7 @@ try {
 
     $dbname = 'names';
     $username = 'names';
-    $password = 'S.e]4UI5RS/GH7B2';
+    $password = 'pran1997';
 
     $pdo = new PDO(
         "mysql:host=localhost;dbname=$dbname",
