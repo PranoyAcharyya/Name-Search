@@ -6,42 +6,7 @@ $alphabets = generateAlphabets();
 
 $searchedAlphabet = $_GET['char'] ?? '';
 $query = strtoupper($searchedAlphabet);
-
-/**
- * Fetch names by starting alphabet
- */
-function getNamesByAlphabet(PDO $pdo, string $query): array
-{
-
-  if ($query === '') {
-    $stmt = $pdo->query(
-      'SELECT DISTINCT `name`
-             FROM `names`
-             ORDER BY `name` ASC'
-    );
-  } else {
-
-    $stmt = $pdo->prepare(
-      'SELECT DISTINCT `name`
-         FROM `names`
-         WHERE `name` LIKE :expr
-         ORDER BY `name` ASC'
-    );
-
-    $stmt->execute([
-      ':expr' => $query . '%'
-    ]);
-  }
-
-  return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-// Call the function
-$results = [];
-
-if (!empty($query)) {
-  $results = getNamesByAlphabet($pdo, $query);
-}
+$results = getNames($pdo, $query);
 
 ?>
 
