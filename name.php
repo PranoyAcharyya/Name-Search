@@ -7,6 +7,11 @@ require __DIR__.'/utility/namedetails.inc.php';
 $queryName = $_GET['name'];
 
 $result = getNameDetails($pdo,$queryName);
+// var_dump($result);
+
+$totalCount = array_sum(array_column($result,'count'));
+
+
 
 ?>
 
@@ -67,6 +72,12 @@ $result = getNameDetails($pdo,$queryName);
                 <p class="text-blue-100 text-sm">Last Year</p>
                 <p class="text-2xl font-bold">
                     <?php echo end($result)['year']; ?>
+                </p>
+            </div>
+            <div>
+                <p class="text-blue-100 text-sm">Total Count</p>
+                <p class="text-2xl font-bold">
+                    <?php echo $totalCount; ?>
                 </p>
             </div>
         </div>

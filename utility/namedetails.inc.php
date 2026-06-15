@@ -7,3 +7,4 @@ function getNameDetails(PDO $pdo , string $query = ''){
     $namedetails = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $namedetails;
 }
+
